@@ -1,0 +1,12 @@
+.container-pontos {
+    position: relative;
+}
+.container-pontos .glyphicon{
+    font-size: 6rem;
+}
+.container-pontos b.numero{
+    position: absolute;
+    top:-2.5rem;
+    left:2.2rem;
+    color:white;
+}
