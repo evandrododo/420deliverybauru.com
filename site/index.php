@@ -107,7 +107,7 @@ session_start();
             if (emailFb && idFb) {
                 $.post("./loginfb.php",{ emailFb: emailFb, idFb: idFb, nome:nome }, function( data ) {
                     console.log(data);
-                });)
+                });
             }
         });
     }  

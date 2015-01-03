@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-    if($_REQUEST["email"]) {
+    if($_REQUEST["emailFb"]) {
         require_once "../entitymanager.php";
 
         $idFb = $_REQUEST['idFb'];
@@ -20,8 +20,9 @@ session_start();
             if(!$pontosUsuario) $pontosUsuario = "0";
             
             $facebookId = $Usuario->getFacebookId();
-
+echo "achou usuario";
             if($facebookId == $idFb) {
+echo "facebookid=idFB";
                 $_SESSION['idUsuario'] = $idUsuario;
                 $_SESSION['nomeUsuario'] = $nomeUsuario;
                 $_SESSION['pontosUsuario'] = $pontosUsuario;
@@ -31,7 +32,7 @@ session_start();
             }
         }else{
             //Cadastra um novo usuário
-            
+            echo "novo usuar";
             $Usuario = new Usuario();
             $Usuario->setNomeCompleto($nomeCompleto);
             $Usuario->setFacebookId($idFb);
