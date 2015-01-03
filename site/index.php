@@ -44,13 +44,11 @@ session_start();
       logaApp();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      //document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
     }
   }
 
@@ -105,17 +103,14 @@ session_start();
             console.log(response);
             var emailFb = response.email;
             var idFb = response.id;
+            var nome = response.name;
             if (emailFb && idFb) {
-                console.log("ajax pro login php de "+emailFb+" com id="+idFb);
-                startApp(0,''); //vai na resposta do ajax de cima com o id e nome
+                $.post("./loginfb.php",{ emailFb: emailFb, idFb: idFb, nome:nome }, function( data ) {
+                    console.log(data);
+                });)
             }
         });
-    }
-           
-    function startApp(idUsuario, nomeUsuario) {
-        console.log("starta um ajax constante pra verificar sessao com base no idUsuario="+isUsuario);
-        console.log("muda o nome do usuario na tela pra "+nomeUsuario);
-    }
+    }  
 </script>
 
        
