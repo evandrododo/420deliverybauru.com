@@ -1,6 +1,5 @@
 <?php
 session_start();
-
     if($_REQUEST["emailFb"]) {
         require_once "../entitymanager.php";
 
@@ -20,35 +19,29 @@ session_start();
             if(!$pontosUsuario) $pontosUsuario = "0";
             
             $facebookId = $Usuario->getFacebookId();
-echo "achou usuario";
             if($facebookId == $idFb) {
-echo "facebookid=idFB";
                 $_SESSION['idUsuario'] = $idUsuario;
                 $_SESSION['nomeUsuario'] = $nomeUsuario;
                 $_SESSION['pontosUsuario'] = $pontosUsuario;
-                header("Location: ./home.php");
+		return "success";
             } else {
                 $erro = 401;
             }
         }else{
             //Cadastra um novo usuário
-            echo "novo usuar";
             $Usuario = new Usuario();
-            $Usuario->setNomeCompleto($nomeCompleto);
+            $Usuario->setNomeCompleto($nome);
             $Usuario->setFacebookId($idFb);
             $Usuario->setEmail($email);
-            $Usuario->setNome($nome);
 
             $entityManager->persist($Usuario); //persistencia (caso dê merda ele mantém os dados salvos)
             $entityManager->flush(); //salva no bd
+	    return "success";
         }
         
         if($erro == 401) {
-             header("Location: ./index.php");
+	    return "401";
         }
-    } elseif ($_REQUEST["logoff"]) {
-        unset($_SESSION['idUsuario']);
-        header("Location: ./index.php");
 
     }
 ?>

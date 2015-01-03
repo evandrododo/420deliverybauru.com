@@ -10,7 +10,7 @@ class Usuario
     protected $login;
     /** @Column(type="string") **/
     protected $email;
-    /** @Column(type="string") **/
+    /** @Column(type="string", nullable=TRUE) **/
     protected $senha;
     /** @Column(type="string", nullable=TRUE) **/
     protected $facebookId;

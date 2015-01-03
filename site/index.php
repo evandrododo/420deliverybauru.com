@@ -58,6 +58,7 @@ session_start();
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+		window.location = "http://<?=$_SERVER['SERVER_NAME']?>/dev/420/site/site/home.php";
     });
   }
 
@@ -100,13 +101,11 @@ session_start();
     //Faz o login no PHP através do facebook + email
     function logaApp() {
         FB.api('/me', function(response) {
-            console.log(response);
             var emailFb = response.email;
             var idFb = response.id;
             var nome = response.name;
             if (emailFb && idFb) {
                 $.post("./loginfb.php",{ emailFb: emailFb, idFb: idFb, nome:nome }, function( data ) {
-                    console.log(data);
                 });
             }
         });
